@@ -7,7 +7,7 @@ global class BatchExample implements Database.batchable<sObject>, Database.state
 
     global Database.QueryLocator start(Database.BatchableContext BC) {
         // Build query locator string here
-        String queryString 'query string here';
+        String queryString = 'query string here';
 
         return Database.getQueryLocator(queryString);
     }
