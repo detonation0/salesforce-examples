@@ -1,0 +1,29 @@
+<aura:component description="SearchFilterInput">
+    <aura:attribute name="fullList" type="List" required="true"/>
+    <aura:attribute name="searchLabel" type="String" required="true"/>
+    <aura:attribute name="filteredList" type="List"/>
+    <aura:attribute name="searchValue" type="String"/>
+    <aura:attribute name="searchPlaceholder" type="String" default="Enter search terms..."/>
+    <aura:attribute name="required" type="Boolean" default="false"/>
+    <aura:attribute name="messageWhenValueMissing" type="String"/>
+
+    <div class="slds-is-relative">
+        <lightning:input type="search" label="{!v.searchLabel}" placeholder="{!v.searchPlaceholder}" value="{!v.searchValue}" onchange="{!c.filterRecords}" required="{!v.required}" messageWhenValueMissing="{!v.messageWhenValueMissing}"/>
+        <aura:renderIf isTrue="{!not(empty(v.filteredList))}">
+            <article class="slds-card results-card">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        Results
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner results-inner-scroll">
+                    <ul class="slds-list_dotted">
+                        <aura:iteration items="{!v.filteredList}" var="item">
+                            <li class="slds-p-bottom_small"><a href="javascript:;" onclick="{!c.selectItem}">{!item}</a></li>
+                        </aura:iteration>
+                    </ul>
+                </div>
+            </article>
+        </aura:renderIf>
+    </div>
+</aura:component>
